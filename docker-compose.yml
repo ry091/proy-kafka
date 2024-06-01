@@ -23,6 +23,17 @@ services:
 
   procesamiento:
     build: ./procesamiento
+    container_name: procesamiento
+    environment:
+      KAFKA_BROKER: kafka:9092
+    depends_on:
+      - kafka
+  
+  notificacion:
+    build: ./notificacion
+    container_name: notificacion
+    ports:
+      - "5001:5001"
     environment:
       KAFKA_BROKER: kafka:9092
     depends_on:

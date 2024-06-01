@@ -12,7 +12,8 @@ services:
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
 
   solicitud:
-    build: ./solicitudes-client
+    build: ./solicitudes
+    container_name: solicitudes
     ports:
       - "5000:5000"
     environment:

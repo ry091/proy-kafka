@@ -1,6 +1,7 @@
 services:
   kafka:
     image: bitnami/kafka:latest
+    container_name: kafka
     ports:
       - "9092:9092"
     environment:
@@ -20,6 +21,7 @@ services:
       KAFKA_BROKER: kafka:9092
     depends_on:
       - kafka
+    
 
   procesamiento:
     build: ./procesamiento
@@ -28,6 +30,7 @@ services:
       KAFKA_BROKER: kafka:9092
     depends_on:
       - kafka
+      - solicitud
   
   notificacion:
     build: ./notificacion
@@ -38,5 +41,6 @@ services:
       KAFKA_BROKER: kafka:9092
     depends_on:
       - kafka
+      - procesamiento
 
   

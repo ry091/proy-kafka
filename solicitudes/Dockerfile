@@ -1,12 +1,15 @@
-FROM python:latest
-
-
-# Instalar dependencias
-COPY requirements.txt /app/
-COPY dataset.json /app/
+FROM python:3.8
 
 WORKDIR /app
-RUN pip install -r requirements.txt
+# Instalar dependencias
+COPY req.txt .
+COPY dataset.json .
+
+RUN pip install -r req.txt
+COPY app.py .
 
 
 CMD ["python","-u" ,"app.py"]
+
+
+

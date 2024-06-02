@@ -1,9 +1,10 @@
-
-FROM python:latest
-
-COPY requirements.txt /app/
-RUN pip install -r requirements.txt
+FROM python:3.8
 
 WORKDIR /app
+COPY req.txt .
 
-CMD ["python", "app.py"]
+RUN pip install -r req.txt
+
+COPY app.py .
+
+CMD ["python","app.py"]

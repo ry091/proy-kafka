@@ -25,8 +25,8 @@ def datos(data):
 # Función para enviar correos electrónicos
 def enviar_correo(pedido, estado):
     # Configuración de los detalles del correo electrónico
-    remitente = 'felipe.mora_m@mail.udp.cl'
-    destinatario = 'felipe45676@gmail.com'
+    remitente = 'email'
+    destinatario = 'emaildest'
     asunto = 'Estado del pedido'
     cuerpo = f'El estado del pedido {pedido["id"]}, nombre: {pedido["nombre"]}, precio: {pedido["precio"]} es: {estado}'
 

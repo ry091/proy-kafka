@@ -33,8 +33,8 @@ def enviar_correo(pedido, estado):
     # Configuración del servidor SMTP
     servidor_smtp = 'smtp.gmail.com'
     puerto_smtp = 587
-    usuario = 'felipe.mora_m@mail.udp.cl'
-    contrasena = 'Pc4Gc4-T'
+    usuario = 'email'
+    contrasena = 'contrasena'
 
     # Crear el objeto del mensaje
     mensaje = MIMEMultipart()

@@ -20,7 +20,7 @@ def cargar_datos():
     valor=datos(data)
     producer.send('pedidos', value=valor)
     producer.flush()
-    return jsonify({'mensaje': 'ok', 'data':valor}), 200
+    return jsonify({'mensaje': 'oka', 'data':valor}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

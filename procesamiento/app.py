@@ -3,7 +3,7 @@ import json
 import time
 
 consumer = KafkaConsumer(
-    'pedidos', 
+    'pedidos',
     bootstrap_servers='kafka:9092',
     auto_offset_reset='earliest',
     group_id='process-group',
@@ -13,6 +13,8 @@ producer = KafkaProducer(
     bootstrap_servers='kafka:9092',
     value_serializer=lambda x: json.dumps(x).encode('utf-8')
 )
+
+
 def actualizar_estado(pedido):
     if 'estado' not in pedido:
         pedido['estado'] = "recibido"  # inicial
@@ -23,15 +25,16 @@ def actualizar_estado(pedido):
             pedido['estado'] = estados[current_index + 1]
     return pedido
 
+
 for mensaje in consumer:
     lista_pedidos = mensaje.value
     for pedido in lista_pedidos:
         if 'estado' not in pedido:
-            pedido['estado'] = "recibido" 
+            pedido['estado'] = "recibido"
         while pedido['estado'] != "finalizado":
             pedido = actualizar_estado(pedido)
-            time.sleep(1)  #
-        
-        producer.send('pedidos_actualizados', value=pedido)  
-        producer.flush()
-    time.sleep(5)
+            producer.send('pedidos_actualizados', value=pedido)  # Enviar el pedido actualizado a Kafka
+            producer.flush()
+            time.sleep(1)  # Esperar un segundo antes de enviar el siguiente estado
+    time.sleep(5)  # Esperar 5 segundos antes de revisar el siguiente mensaje del consumidor
+

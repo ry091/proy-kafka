@@ -4,7 +4,7 @@ WORKDIR /app
 COPY req.txt .
 
 RUN pip install -r req.txt
+RUN mkdir /app/logs
+COPY procesamiento.py .
 
-COPY app.py .
-
-CMD ["python","app.py"]
+CMD ["python","procesamiento.py"]

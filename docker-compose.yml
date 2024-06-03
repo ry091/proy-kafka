@@ -22,7 +22,6 @@ services:
     depends_on:
       - kafka
     
-
   procesamiento:
     build: ./procesamiento
     container_name: procesamiento
@@ -42,5 +41,7 @@ services:
     depends_on:
       - kafka
       - procesamiento
+    volumes:
+      - ./local/logs:/app/logs
 
   
